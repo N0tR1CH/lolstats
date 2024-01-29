@@ -9,6 +9,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
@@ -16,25 +18,34 @@ import androidx.compose.ui.tooling.preview.Preview
 @Preview
 @Composable
 fun AppTopBar() {
+    val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(
+        rememberTopAppBarState()
+    )
+
     CenterAlignedTopAppBar(colors = TopAppBarDefaults.topAppBarColors(
-        containerColor = MaterialTheme.colorScheme.secondary,
-    ), title = {
-        AppTitle()
-    }, navigationIcon = {
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(
-                imageVector = Icons.Filled.ArrowBack,
-                contentDescription = "Back",
-                tint = MaterialTheme.colorScheme.onSecondary
-            )
-        }
-    }, actions = {
-        IconButton(onClick = { /*TODO*/ }) {
-            Icon(
-                imageVector = Icons.Filled.Face,
-                contentDescription = "Back",
-                tint = MaterialTheme.colorScheme.onSecondary
-            )
-        }
-    })
+        containerColor = MaterialTheme.colorScheme.secondary
+    ),
+        title = {
+            AppTitle()
+        },
+        navigationIcon = {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = MaterialTheme.colorScheme.onSecondary
+                )
+            }
+        },
+        actions = {
+            IconButton(onClick = { /*TODO*/ }) {
+                Icon(
+                    imageVector = Icons.Filled.Face,
+                    contentDescription = "Back",
+                    tint = MaterialTheme.colorScheme.onSecondary
+                )
+            }
+        },
+        scrollBehavior = scrollBehavior
+    )
 }
