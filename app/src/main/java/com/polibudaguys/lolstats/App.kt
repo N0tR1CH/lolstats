@@ -15,6 +15,7 @@ import androidx.navigation.compose.rememberNavController
 import com.polibudaguys.lolstats.composables.AppBottomBar
 import com.polibudaguys.lolstats.composables.AppTopBar
 import com.polibudaguys.lolstats.constants.Routes
+import com.polibudaguys.lolstats.screens.SearchScreen
 
 @Preview
 @Composable
@@ -35,8 +36,8 @@ fun App() {
             modifier = Modifier.padding(innerPadding),
         ) {
             composable(Routes.Search) {
-                Column() {
-                    Text("Search")
+                Column {
+                    SearchScreen()
                 }
             }
 
