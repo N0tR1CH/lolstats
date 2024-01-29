@@ -15,15 +15,21 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.currentBackStackEntryAsState
 
 @Composable
 fun AppBottomBar(navController: NavHostController) {
+    val navBackStackEntry: NavBackStackEntry? by navController.currentBackStackEntryAsState()
+    val currentRoute: String? = navBackStackEntry?.destination?.route
+
     BottomAppBar(
         containerColor = MaterialTheme.colorScheme.secondary,
     ) {
@@ -32,7 +38,7 @@ fun AppBottomBar(navController: NavHostController) {
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
             for (bottomBarItem: BottomBarItem in BottomBarItems.items) {
-                AppBottomBarItem(bottomBarItem, navController)
+                AppBottomBarItem(bottomBarItem, navController, currentRoute)
             }
         }
     }
@@ -68,9 +74,16 @@ object BottomBarItems {
 }
 
 @Composable
-fun AppBottomBarItem(bottomBarItem: BottomBarItem, navController: NavHostController) {
+fun AppBottomBarItem(
+    bottomBarItem: BottomBarItem,
+    navController: NavHostController,
+    currentRoute: String?,
+) {
+    val isSelected: Boolean = currentRoute == bottomBarItem.routeName
+
     Column(
-        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         IconButton(onClick = {
             navController.navigate(bottomBarItem.routeName)
@@ -78,11 +91,15 @@ fun AppBottomBarItem(bottomBarItem: BottomBarItem, navController: NavHostControl
             Icon(
                 imageVector = bottomBarItem.icon,
                 contentDescription = bottomBarItem.name,
-                modifier = Modifier.size(40.dp)
+                modifier = Modifier.size(40.dp),
+                tint = if (isSelected) MaterialTheme.colorScheme.onSecondary
+                else MaterialTheme.colorScheme.inverseSurface,
             )
         }
         Text(
-            text = bottomBarItem.name, fontWeight = FontWeight.Bold
+            text = bottomBarItem.name, fontWeight = FontWeight.Bold,
+            color = if (isSelected) MaterialTheme.colorScheme.onSecondary
+            else MaterialTheme.colorScheme.inverseSurface,
         )
     }
 }
