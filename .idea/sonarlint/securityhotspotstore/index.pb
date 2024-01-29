@@ -29,3 +29,17 @@ Q.idea/sonarlint/securityhotspotstore/5/1/5121316b2d6ae50d5ed3a9917be869548cd7c0
 Q.idea/sonarlint/securityhotspotstore/b/6/b6f1cbca1e0acf056bb93b35023406f53f1fb2d8,8\d\8d74c5cd00c1b25a6049a8a34f3f3565c20e3f5c
 w
 G.idea/sonarlint/issuestore/6/f/6fc2996515c65ea3fcad44564e0ea9f30e27a458,1\8\18c78843e207f9c1ba0b84df63026c3007c7b590
+w
+Gapp/src/main/java/com/polibudaguys/lolstats/composables/AppBottomBar.kt,0\7\07e68e68989133843bd9a710698364c4e2adce39
+D
+app/build.gradle.kts,d\2\d2a4383452aad84a18429a5844d31330a012a9e6
+@
+build.gradle.kts,d\b\dbcff70658daf80b53ce624f6adcaa529df5ed8d
+Å
+Q.idea/sonarlint/securityhotspotstore/0/7/07e68e68989133843bd9a710698364c4e2adce39,4\4\4492885712b8512dd0e88c6ce0e242a80042b98d
+w
+G.idea/sonarlint/issuestore/d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d,5\9\597ee72a8e9f089a0f26608d0d77229bc4510a37
+Å
+Q.idea/sonarlint/securityhotspotstore/d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d,e\c\ec4317fc3093e8c354ef226260d7fd566c3957fb
+Å
+Q.idea/sonarlint/securityhotspotstore/d/2/d2a4383452aad84a18429a5844d31330a012a9e6,7\f\7fcac164c7a46b8fc6411ea93226c884af6044db

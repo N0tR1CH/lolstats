@@ -8,12 +8,18 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.polibudaguys.lolstats.composables.AppBottomBar
 import com.polibudaguys.lolstats.composables.AppTopBar
 
 @Preview
 @Composable
 fun App() {
+    val navController: NavHostController = rememberNavController()
+
     Scaffold(
         topBar = {
             AppTopBar()
@@ -22,10 +28,25 @@ fun App() {
             AppBottomBar()
         },
     ) { innerPadding: PaddingValues ->
-        Column(
-            modifier = Modifier.padding(innerPadding)
+        NavHost(
+            navController = navController,
+            startDestination = "search",
+            modifier = Modifier.padding(innerPadding),
         ) {
-            Text("Hello world")
+            composable("search") {
+                Column() {
+                    Text("Search")
+                    Text(navController.currentBackStackEntry?.destination?.route.toString())
+                }
+            }
+
+            composable("history") {
+                Text("History")
+            }
+
+            composable("menu") {
+                Text("menu")
+            }
         }
     }
 }
