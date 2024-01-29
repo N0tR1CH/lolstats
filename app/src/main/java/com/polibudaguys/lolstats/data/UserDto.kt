@@ -30,9 +30,12 @@ class UserDto(
     private val _showErrorToastChannel: Channel<Boolean> = Channel<Boolean>()
     val user: StateFlow<User> = _user.asStateFlow()
     val showErrorToastChannel: Flow<Boolean> = _showErrorToastChannel.receiveAsFlow()
+    private val _isLoading: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val isLoading: StateFlow<Boolean> = _isLoading.asStateFlow()
 
     fun getUser(userName: String) {
         viewModelScope.launch {
+            _isLoading.value = true
             userRepository.getUser(
                 userName = userName
             ).collectLatest { result: ApiResult<User> ->
@@ -47,6 +50,7 @@ class UserDto(
                         _showErrorToastChannel.send(true)
                     }
                 }
+                _isLoading.value = false
             }
         }
     }
