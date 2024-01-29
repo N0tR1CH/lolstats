@@ -7,7 +7,6 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,11 +14,11 @@ import androidx.navigation.compose.rememberNavController
 import com.polibudaguys.lolstats.composables.AppBottomBar
 import com.polibudaguys.lolstats.composables.AppTopBar
 import com.polibudaguys.lolstats.constants.Routes
+import com.polibudaguys.lolstats.data.UserDto
 import com.polibudaguys.lolstats.screens.SearchScreen
 
-@Preview
 @Composable
-fun App() {
+fun App(userViewModel: UserDto) {
     val navController: NavHostController = rememberNavController()
 
     Scaffold(
@@ -37,7 +36,7 @@ fun App() {
         ) {
             composable(Routes.Search) {
                 Column {
-                    SearchScreen()
+                    SearchScreen(userViewModel = userViewModel)
                 }
             }
 
