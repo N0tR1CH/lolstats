@@ -22,10 +22,10 @@ fun App() {
 
     Scaffold(
         topBar = {
-            AppTopBar()
+            AppTopBar(navController = navController)
         },
         bottomBar = {
-            AppBottomBar()
+            AppBottomBar(navController = navController)
         },
     ) { innerPadding: PaddingValues ->
         NavHost(
@@ -36,7 +36,6 @@ fun App() {
             composable("search") {
                 Column() {
                     Text("Search")
-                    Text(navController.currentBackStackEntry?.destination?.route.toString())
                 }
             }
 
@@ -46,6 +45,10 @@ fun App() {
 
             composable("menu") {
                 Text("menu")
+            }
+
+            composable("avatar") {
+                Text("avatar")
             }
         }
     }

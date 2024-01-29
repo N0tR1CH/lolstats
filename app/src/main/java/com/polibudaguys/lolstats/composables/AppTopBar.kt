@@ -12,12 +12,11 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
-fun AppTopBar() {
+fun AppTopBar(navController: NavHostController) {
     val scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior(
         rememberTopAppBarState()
     )
@@ -29,7 +28,9 @@ fun AppTopBar() {
             AppTitle()
         },
         navigationIcon = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {
+                navController.popBackStack()
+            }) {
                 Icon(
                     imageVector = Icons.Filled.ArrowBack,
                     contentDescription = "Back",
@@ -38,10 +39,12 @@ fun AppTopBar() {
             }
         },
         actions = {
-            IconButton(onClick = { /*TODO*/ }) {
+            IconButton(onClick = {
+                navController.navigate("avatar")
+            }) {
                 Icon(
                     imageVector = Icons.Filled.Face,
-                    contentDescription = "Back",
+                    contentDescription = "Avatar",
                     tint = MaterialTheme.colorScheme.onSecondary
                 )
             }

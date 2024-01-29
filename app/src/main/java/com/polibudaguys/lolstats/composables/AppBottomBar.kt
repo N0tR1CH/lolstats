@@ -20,19 +20,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 
 @Composable
-fun AppBottomBar() {
+fun AppBottomBar(navController: NavHostController) {
     BottomAppBar(
         containerColor = MaterialTheme.colorScheme.secondary,
     ) {
         Row(
-            modifier = Modifier
-                .fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
             for (bottomBarItem: BottomBarItem in BottomBarItems.items) {
-                AppBottomBarItem(bottomBarItem)
+                AppBottomBarItem(bottomBarItem, navController)
             }
         }
     }
@@ -68,12 +68,13 @@ object BottomBarItems {
 }
 
 @Composable
-fun AppBottomBarItem(bottomBarItem: BottomBarItem) {
+fun AppBottomBarItem(bottomBarItem: BottomBarItem, navController: NavHostController) {
     Column(
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+        verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = {
+            navController.navigate(bottomBarItem.routeName)
+        }) {
             Icon(
                 imageVector = bottomBarItem.icon,
                 contentDescription = bottomBarItem.name,
@@ -81,8 +82,7 @@ fun AppBottomBarItem(bottomBarItem: BottomBarItem) {
             )
         }
         Text(
-            text = bottomBarItem.name,
-            fontWeight = FontWeight.Bold
+            text = bottomBarItem.name, fontWeight = FontWeight.Bold
         )
     }
 }
