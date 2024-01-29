@@ -13,6 +13,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
+import com.polibudaguys.lolstats.constants.Routes
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -40,7 +41,7 @@ fun AppTopBar(navController: NavHostController) {
         },
         actions = {
             IconButton(onClick = {
-                navController.navigate("avatar")
+                navController.navigate(Routes.Avatar)
             }) {
                 Icon(
                     imageVector = Icons.Filled.Face,

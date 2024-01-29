@@ -14,6 +14,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.polibudaguys.lolstats.composables.AppBottomBar
 import com.polibudaguys.lolstats.composables.AppTopBar
+import com.polibudaguys.lolstats.constants.Routes
 
 @Preview
 @Composable
@@ -30,24 +31,24 @@ fun App() {
     ) { innerPadding: PaddingValues ->
         NavHost(
             navController = navController,
-            startDestination = "search",
+            startDestination = Routes.Search,
             modifier = Modifier.padding(innerPadding),
         ) {
-            composable("search") {
+            composable(Routes.Search) {
                 Column() {
                     Text("Search")
                 }
             }
 
-            composable("history") {
+            composable(Routes.History) {
                 Text("History")
             }
 
-            composable("menu") {
+            composable(Routes.Menu) {
                 Text("menu")
             }
 
-            composable("avatar") {
+            composable(Routes.Avatar) {
                 Text("avatar")
             }
         }
