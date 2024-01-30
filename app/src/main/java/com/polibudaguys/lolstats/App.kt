@@ -14,11 +14,15 @@ import androidx.navigation.compose.rememberNavController
 import com.polibudaguys.lolstats.composables.AppBottomBar
 import com.polibudaguys.lolstats.composables.AppTopBar
 import com.polibudaguys.lolstats.constants.Routes
+import com.polibudaguys.lolstats.data.SummonerStatsDto
 import com.polibudaguys.lolstats.data.UserDto
 import com.polibudaguys.lolstats.screens.SearchScreen
 
 @Composable
-fun App(userViewModel: UserDto) {
+fun App(
+    userViewModel: UserDto,
+    summonerStatsViewModel: SummonerStatsDto,
+) {
     val navController: NavHostController = rememberNavController()
 
     Scaffold(
@@ -36,7 +40,10 @@ fun App(userViewModel: UserDto) {
         ) {
             composable(Routes.Search) {
                 Column {
-                    SearchScreen(userViewModel = userViewModel)
+                    SearchScreen(
+                        userViewModel = userViewModel,
+                        summonerStatsViewModel = summonerStatsViewModel,
+                    )
                 }
             }
 

@@ -725,3 +725,15 @@ w
 G.idea/sonarlint/issuestore/9/7/97044bf4832f026d7a4d9faeaeb58eca1e1f49e0,4\3\43a5c3eac42766a3cd5bd971f34fe52fc5ab6b4f
 w
 G.idea/sonarlint/issuestore/1/9/1912fc5ebea774da9b4314ab8913ff84aedf7931,1\d\1dc68736206dff6e49d1ffd189e7c640a4433fa3
+w
+Gapp/src/main/java/com/polibudaguys/lolstats/data/model/SummonerStats.kt,d\4\d4c6e0ad510dc011186d28730fdb795041088c5b
+{
+Kapp/src/main/java/com/polibudaguys/lolstats/data/model/SummonerStatsItem.kt,f\b\fb8032fd17d5a87be1f6a88e915662ae6f973e86
+…
+Uapp/src/main/java/com/polibudaguys/lolstats/data/repositories/IUserStatsRepository.kt,3\4\345383f8b17b38982c8184c132e835bd672af730
+‰
+Yapp/src/main/java/com/polibudaguys/lolstats/data/repositories/ISummonerStatsRepository.kt,1\e\1eb44fb30b87d8a986b187ed695c980f2509c1be
+ˆ
+Xapp/src/main/java/com/polibudaguys/lolstats/data/repositories/SummonerStatsRepository.kt,1\5\153d3fdfa3c1e01bb3790f81946cc0b10b21598b
+t
+Dapp/src/main/java/com/polibudaguys/lolstats/data/SummonerStatsDto.kt,f\5\f582740b2305bb97ddcdf0a09a38fff019c16ede

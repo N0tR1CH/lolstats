@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 
 class UserDto(
     private val userRepository: IUserRepository
-) : ViewModel() {
+): ViewModel() {
     private val _user: MutableStateFlow<User> = MutableStateFlow<User>(
         User(
             accountId = "",
