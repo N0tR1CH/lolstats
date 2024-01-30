@@ -6,6 +6,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
+const val API_KEY = "RGAPI-ad12f9b2-ace3-4ef5-9c13-85426908a996"
+
 interface RiotApiService {
     @GET("summoner/v4/summoners/by-name/{name}")
     suspend fun fetchSummonerByName(

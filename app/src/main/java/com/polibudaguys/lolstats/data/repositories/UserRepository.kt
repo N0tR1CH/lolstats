@@ -2,6 +2,7 @@ package com.polibudaguys.lolstats.data.repositories
 
 import com.polibudaguys.lolstats.data.ApiResult
 import com.polibudaguys.lolstats.data.model.User
+import com.polibudaguys.lolstats.services.API_KEY
 import com.polibudaguys.lolstats.services.RiotApiService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,7 +17,7 @@ class UserRepository(
             val user = try {
                 riotApiService.fetchSummonerByName(
                     name = userName,
-                    apiKey = "RGAPI-92ae25fb-00bb-4bc0-9f63-9a66613e6078",
+                    apiKey = API_KEY,
                 )
             } catch (exception: IOException) {
                 exception.printStackTrace()

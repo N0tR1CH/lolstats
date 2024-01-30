@@ -2,6 +2,7 @@ package com.polibudaguys.lolstats.screens
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -30,12 +31,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.polibudaguys.lolstats.R
 import com.polibudaguys.lolstats.data.SummonerStatsDto
 import com.polibudaguys.lolstats.data.UserDto
+import com.polibudaguys.lolstats.data.model.SummonerStatsItem
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -127,37 +131,7 @@ fun SearchScreen(
                         .fillMaxWidth()
                         .padding(8.dp),
                 ) {
-                    Text(
-                        text = "Tier: ${stats.tier}",
-                    )
-                    Image(
-                        painter = painterResource(id = findTierImage(stats.tier)),
-                        contentDescription = "tier image",
-                    )
-                    Text(
-                        text = "Rank: ${stats.rank}",
-                    )
-                    Text(
-                        text = "League Points: ${stats.leaguePoints}",
-                    )
-                    Text(
-                        text = "Wins: ${stats.wins}",
-                    )
-                    Text(
-                        text = "Losses: ${stats.losses}",
-                    )
-                    Text(
-                        text = "Veteran: ${stats.veteran}",
-                    )
-                    Text(
-                        text = "Inactive: ${stats.inactive}",
-                    )
-                    Text(
-                        text = "Fresh Blood: ${stats.freshBlood}",
-                    )
-                    Text(
-                        text = "Hot Streak: ${stats.hotStreak}",
-                    )
+                    SummonerStats(summonerStatsItem = stats)
                 }
             }
         }
@@ -181,6 +155,76 @@ fun SearchScreen(
                 ).show()
             }
         }
+    }
+}
+
+@Composable
+fun SummonerStats(summonerStatsItem: SummonerStatsItem) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text(
+            "Summoner Stats",
+            textAlign = TextAlign.Center,
+            fontWeight = FontWeight.Bold,
+            fontSize = 24.sp,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        Image(
+            painter = painterResource(findTierImage(summonerStatsItem.tier)),
+            contentDescription = "tier image",
+            Modifier
+                .size(256.dp)
+                .border(
+                    10.dp,
+                    MaterialTheme.colorScheme.onSurface,
+                    RoundedCornerShape(50.dp),
+                )
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            "Tier: ${summonerStatsItem.tier}",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            "Rank: ${summonerStatsItem.rank}",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "League Points: ${summonerStatsItem.leaguePoints}",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Wins: ${summonerStatsItem.wins}",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+        )
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Text(
+            text = "Losses: ${summonerStatsItem.losses}",
+            fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
+        )
     }
 }
 
