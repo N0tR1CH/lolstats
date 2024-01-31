@@ -715,3 +715,5 @@ j
 :app/src/main/java/com/polibudaguys/lolstats/AppDatabase.kt,5\4\547a4d146749a81e4edd41dd39a22521588ddc79
 y
 Iapp/src/main/java/com/polibudaguys/lolstats/data/dtos/SummonerStatsDto.kt,3\a\3a49316348f7f6aa375309dd42414e9b8af3f5ab
+q
+Aapp/src/main/java/com/polibudaguys/lolstats/utils/Notification.kt,6\7\67b9781d912c7cedf9150d94d7e8a129bbff8e44
