@@ -60,20 +60,22 @@ fun SearchScreen(
     val isUserLoading by userViewModel.isLoading.collectAsState()
     val imageUrl =
         "https://ddragon.leagueoflegends.com/cdn/14.2.1/img/profileicon/${user.profileIconId}.png"
-    var isAddedSuccessfully :Boolean? by remember { mutableStateOf(null) }
+    var isAddedSuccessfully: Boolean? by remember { mutableStateOf(null) }
 
     LaunchedEffect(key1 = isAddedSuccessfully) {
-            when (isAddedSuccessfully) {
-                true -> Toast.makeText(
-                    context, "Added to History", Toast.LENGTH_SHORT
-                ).show()
-                false -> Toast.makeText(
-                    context, "Already in History", Toast.LENGTH_SHORT
-                ).show()
-                else -> {
-                    // do nothing
-                }
+        when (isAddedSuccessfully) {
+            true -> Toast.makeText(
+                context, "Added to History", Toast.LENGTH_SHORT
+            ).show()
+
+            false -> Toast.makeText(
+                context, "Already in History", Toast.LENGTH_SHORT
+            ).show()
+
+            else -> {
+                // do nothing
             }
+        }
     }
 
     Column(
@@ -174,11 +176,11 @@ fun SearchScreen(
 
                             val summonerDao = appDatabase.summonerDao()
 
-                            if (!summonerDao.exists(user.id)) {
+                            isAddedSuccessfully = if (!summonerDao.exists(user.id)) {
                                 summonerDao.insert(summoner)
-                                isAddedSuccessfully = true
+                                true
                             } else {
-                                isAddedSuccessfully = false
+                                false
                             }
                         }
                     }) {
