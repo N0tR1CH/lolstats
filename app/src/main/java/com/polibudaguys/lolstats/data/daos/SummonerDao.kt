@@ -16,4 +16,8 @@ interface SummonerDao {
 
     @Delete
     fun delete(summoner: Summoner)
+
+    // Check for summoner existence by id
+    @Query("SELECT EXISTS(SELECT * FROM summoner WHERE id = :id)")
+    fun exists(id: String): Boolean
 }

@@ -1,10 +1,12 @@
 package com.polibudaguys.lolstats.data.model
 
 import androidx.room.ColumnInfo
+import androidx.room.Entity
 import androidx.room.PrimaryKey
 
+@Entity
 data class Summoner(
-    @PrimaryKey val id: String?,
+    @PrimaryKey val id: String,
     @ColumnInfo(name = "name") val name: String?,
     @ColumnInfo(name = "level") val level: Int?,
     @ColumnInfo(name = "tier") val tier: String?,

@@ -42,7 +42,10 @@ import com.polibudaguys.lolstats.data.dtos.SummonerStatsDto
 import com.polibudaguys.lolstats.data.dtos.UserDto
 import com.polibudaguys.lolstats.data.model.Summoner
 import com.polibudaguys.lolstats.data.model.SummonerStatsItem
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @Composable
 fun SearchScreen(
@@ -89,6 +92,7 @@ fun SearchScreen(
                     context, "summoner name cant be empty", Toast.LENGTH_SHORT
                 ).show()
             } else {
+                summonerStatsViewModel.clearViewModel();
                 userViewModel.getUser(summonerName)
             }
         }) {
@@ -135,25 +139,43 @@ fun SearchScreen(
                         .padding(8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
-                    SummonerStats(summonerStatsItem = stats)
+                    SummonerStats(summonerStatsList = summonerStats)
 
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Button(onClick = {
-                        val summoner = Summoner(
-                            id = user.id,
-                            name = user.name,
-                            level = user.summonerLevel,
-                            tier = stats.tier,
-                            rank = stats.rank,
-                            points = stats.leaguePoints,
-                            wins = stats.wins,
-                            losses = stats.losses,
-                            profileIconId = user.profileIconId,
-                        )
+                        var isAddedSuccessfully = false
 
-                        val summonerDao = appDatabase.summonerDao()
-                        summonerDao.insert(summoner)
+                        CoroutineScope(Dispatchers.IO).launch {
+                            val summoner = Summoner(
+                                id = user.id,
+                                name = user.name,
+                                level = user.summonerLevel,
+                                tier = stats.tier,
+                                rank = stats.rank,
+                                points = stats.leaguePoints,
+                                wins = stats.wins,
+                                losses = stats.losses,
+                                profileIconId = user.profileIconId,
+                            )
+
+                            val summonerDao = appDatabase.summonerDao()
+
+                            if (!summonerDao.exists(user.id)) {
+                                summonerDao.insert(summoner)
+                                isAddedSuccessfully = true
+                            }
+                        }
+
+                        if (isAddedSuccessfully) {
+                            Toast.makeText(
+                                context, "Added to History", Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                context, "Already in History", Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }) {
                         Text("Add to History")
                     }
@@ -184,7 +206,9 @@ fun SearchScreen(
 }
 
 @Composable
-fun SummonerStats(summonerStatsItem: SummonerStatsItem) {
+fun SummonerStats(summonerStatsList: List<SummonerStatsItem>) {
+    val summonerStatsItem = summonerStatsList[0]
+
     Column(
         modifier = Modifier
             .fillMaxWidth()

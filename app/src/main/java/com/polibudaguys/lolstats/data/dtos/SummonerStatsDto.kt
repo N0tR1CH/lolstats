@@ -41,4 +41,10 @@ class SummonerStatsDto(
             }
         }
     }
+
+    fun clearViewModel() {
+        _summonerStats.value = emptyList()
+        _showErrorToastChannel.value = false
+        _isLoading.value = false
+    }
 }
