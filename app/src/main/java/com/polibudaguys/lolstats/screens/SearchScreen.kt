@@ -60,6 +60,21 @@ fun SearchScreen(
     val isUserLoading by userViewModel.isLoading.collectAsState()
     val imageUrl =
         "https://ddragon.leagueoflegends.com/cdn/14.2.1/img/profileicon/${user.profileIconId}.png"
+    var isAddedSuccessfully :Boolean? by remember { mutableStateOf(null) }
+
+    LaunchedEffect(key1 = isAddedSuccessfully) {
+            when (isAddedSuccessfully) {
+                true -> Toast.makeText(
+                    context, "Added to History", Toast.LENGTH_SHORT
+                ).show()
+                false -> Toast.makeText(
+                    context, "Already in History", Toast.LENGTH_SHORT
+                ).show()
+                else -> {
+                    // do nothing
+                }
+            }
+    }
 
     Column(
         modifier = Modifier
@@ -144,8 +159,6 @@ fun SearchScreen(
                     Spacer(modifier = Modifier.height(16.dp))
 
                     Button(onClick = {
-                        var isAddedSuccessfully = false
-
                         CoroutineScope(Dispatchers.IO).launch {
                             val summoner = Summoner(
                                 id = user.id,
@@ -164,17 +177,9 @@ fun SearchScreen(
                             if (!summonerDao.exists(user.id)) {
                                 summonerDao.insert(summoner)
                                 isAddedSuccessfully = true
+                            } else {
+                                isAddedSuccessfully = false
                             }
-                        }
-
-                        if (isAddedSuccessfully) {
-                            Toast.makeText(
-                                context, "Added to History", Toast.LENGTH_SHORT
-                            ).show()
-                        } else {
-                            Toast.makeText(
-                                context, "Already in History", Toast.LENGTH_SHORT
-                            ).show()
                         }
                     }) {
                         Text("Add to History")
