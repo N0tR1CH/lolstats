@@ -7,7 +7,7 @@ import android.webkit.WebViewClient
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.viewinterop.AndroidView
-import com.polibudaguys.lolstats.data.UserDto
+import com.polibudaguys.lolstats.data.dtos.UserDto
 
 @Composable
 fun AvatarScreen(userViewModel: UserDto) {

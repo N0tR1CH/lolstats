@@ -1,7 +1,8 @@
-package com.polibudaguys.lolstats.data
+package com.polibudaguys.lolstats.data.dtos
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.polibudaguys.lolstats.data.ApiResult
 import com.polibudaguys.lolstats.data.model.User
 import com.polibudaguys.lolstats.data.repositories.IUserRepository
 import kotlinx.coroutines.channels.Channel

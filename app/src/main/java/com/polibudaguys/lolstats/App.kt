@@ -13,8 +13,8 @@ import androidx.navigation.compose.rememberNavController
 import com.polibudaguys.lolstats.composables.AppBottomBar
 import com.polibudaguys.lolstats.composables.AppTopBar
 import com.polibudaguys.lolstats.constants.Routes
-import com.polibudaguys.lolstats.data.SummonerStatsDto
-import com.polibudaguys.lolstats.data.UserDto
+import com.polibudaguys.lolstats.data.dtos.SummonerStatsDto
+import com.polibudaguys.lolstats.data.dtos.UserDto
 import com.polibudaguys.lolstats.screens.AvatarScreen
 import com.polibudaguys.lolstats.screens.HistoryScreen
 import com.polibudaguys.lolstats.screens.MenuScreen

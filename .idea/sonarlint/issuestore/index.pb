@@ -729,3 +729,9 @@ q
 Aapp/src/main/java/com/polibudaguys/lolstats/screens/MenuScreen.kt,6\2\62e3d381dd3fc6e4c80c91a9347e0314263931bd
 t
 Dapp/src/main/java/com/polibudaguys/lolstats/screens/HistoryScreen.kt,e\a\eaf384d066df0f0d2296133013685f8f85cc2e65
+~
+Napp/src/main/java/com/polibudaguys/lolstats/data/model/UserAndSummonerStats.kt,6\c\6c0e759d978e8bc218a1aa35efe359e44b12d4d3
+r
+Bapp/src/main/java/com/polibudaguys/lolstats/data/model/Summoner.kt,2\3\233d279804bf3bd78a54abafe59ea8011008921b
+t
+Dapp/src/main/java/com/polibudaguys/lolstats/data/daos/SummonerDao.kt,e\6\e670697b4fd9602b71834342b6e04c9a9300fcaa

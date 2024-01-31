@@ -6,8 +6,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.polibudaguys.lolstats.data.SummonerStatsDto
-import com.polibudaguys.lolstats.data.UserDto
+import com.polibudaguys.lolstats.data.dtos.SummonerStatsDto
+import com.polibudaguys.lolstats.data.dtos.UserDto
 import com.polibudaguys.lolstats.data.repositories.SummonerStatsRepository
 import com.polibudaguys.lolstats.data.repositories.UserRepository
 import com.polibudaguys.lolstats.ui.theme.LOLStatsTheme

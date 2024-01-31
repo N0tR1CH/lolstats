@@ -37,8 +37,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.polibudaguys.lolstats.R
-import com.polibudaguys.lolstats.data.SummonerStatsDto
-import com.polibudaguys.lolstats.data.UserDto
+import com.polibudaguys.lolstats.data.dtos.SummonerStatsDto
+import com.polibudaguys.lolstats.data.dtos.UserDto
 import com.polibudaguys.lolstats.data.model.SummonerStatsItem
 import kotlinx.coroutines.flow.collectLatest
 
@@ -130,8 +130,15 @@ fun SearchScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(8.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     SummonerStats(summonerStatsItem = stats)
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Button(onClick = { /*TODO*/ }) {
+                        Text("Add to History")
+                    }
                 }
             }
         }

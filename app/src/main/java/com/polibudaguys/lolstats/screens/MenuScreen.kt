@@ -31,5 +31,11 @@ fun MenuScreen() {
         OutlinedButton(onClick = { /*TODO*/ }) {
             Text("OPEN GMAPS WITH YOUR LOCATION")
         }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        OutlinedButton(onClick = { /*TODO*/ }) {
+            Text("OPEN YOUTUBE WITH LOL TRAILER")
+        }
     }
 }
