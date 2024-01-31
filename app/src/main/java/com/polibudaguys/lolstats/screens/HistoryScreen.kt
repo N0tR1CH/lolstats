@@ -1,5 +1,6 @@
 package com.polibudaguys.lolstats.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -18,6 +19,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,11 +30,13 @@ import coil.compose.AsyncImage
 import com.polibudaguys.lolstats.AppDatabase
 import com.polibudaguys.lolstats.data.model.Summoner
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 @Composable
 fun HistoryScreen(appDatabase: AppDatabase) {
     var summoners by remember { mutableStateOf(emptyList<Summoner>()) }
+    val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = Unit) {
         summoners = fetchSummoners(appDatabase)
@@ -64,19 +68,29 @@ fun HistoryScreen(appDatabase: AppDatabase) {
                     modifier = Modifier
                         .size(256.dp)
                         .clip(RoundedCornerShape(50.dp))
+                        .clickable(onClick = {
+                            /*TODO*/
+                        })
                 )
 
-                summoner.name?.let {name ->
+                summoner.name?.let { name ->
                     Text(
                         text = name,
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
 
-                IconButton(onClick = { /*TODO*/ }) {
+                IconButton(onClick = {
+                    scope.launch {
+                        deleteSummoner(appDatabase, summoner)
+
+                        summoners = fetchSummoners(appDatabase)
+                    }
+                }) {
                     Icon(
                         imageVector = Icons.Filled.Delete,
-                        contentDescription = "delete summoner",)
+                        contentDescription = "delete summoner",
+                    )
                 }
             }
         }
@@ -86,5 +100,11 @@ fun HistoryScreen(appDatabase: AppDatabase) {
 suspend fun fetchSummoners(appDatabase: AppDatabase): List<Summoner> {
     return withContext(Dispatchers.IO) {
         appDatabase.summonerDao().getAll()
+    }
+}
+
+suspend fun deleteSummoner(appDatabase: AppDatabase, summoner: Summoner) {
+    withContext(Dispatchers.IO) {
+        appDatabase.summonerDao().delete(summoner)
     }
 }
