@@ -12,6 +12,7 @@ import com.polibudaguys.lolstats.data.dtos.UserDto
 import com.polibudaguys.lolstats.data.repositories.SummonerStatsRepository
 import com.polibudaguys.lolstats.data.repositories.UserRepository
 import com.polibudaguys.lolstats.ui.theme.LOLStatsTheme
+import android.os.CountDownTimer
 
 class MainActivity : ComponentActivity() {
     private val userViewModel: UserDto by viewModels<UserDto>(factoryProducer = {
@@ -34,6 +35,19 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        object : CountDownTimer(5000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {}
+
+            override fun onFinish() {
+                NotificationUtils.showNotification(
+                    applicationContext,
+                    "Hey",
+                    "Check out how your friends are doing!"
+                )
+            }
+        }.start()
+
 
         val db: AppDatabase = Room.databaseBuilder(
             applicationContext,
