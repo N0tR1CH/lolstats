@@ -1,5 +1,8 @@
 package com.polibudaguys.lolstats.screens
 
+import android.R.attr.data
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,6 +15,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.ContextCompat.startActivity
+import com.polibudaguys.lolstats.MainActivity
+
 
 @Composable
 fun MenuScreen() {
@@ -28,7 +34,13 @@ fun MenuScreen() {
         
         Spacer(modifier = Modifier.height(16.dp))
 
-        OutlinedButton(onClick = { /*TODO*/ }) {
+        OutlinedButton(onClick = {
+
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse("https://www.youtube.com")
+
+
+             }) {
             Text("OPEN GMAPS WITH YOUR LOCATION")
         }
 

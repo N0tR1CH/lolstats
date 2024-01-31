@@ -105,6 +105,8 @@ fun HistoryScreen(appDatabase: AppDatabase) {
                     )
                 }
             }
+
+            Spacer(modifier = Modifier.height(16.dp))
         }
 
         if (showSummonerStats) {

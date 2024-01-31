@@ -51,6 +51,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.room:room-ktx:2.6.1")
     val nav_version = "2.7.6"
 
     // Navigation for compose
