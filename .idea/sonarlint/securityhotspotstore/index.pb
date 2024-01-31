@@ -735,3 +735,5 @@ r
 Bapp/src/main/java/com/polibudaguys/lolstats/data/model/Summoner.kt,2\3\233d279804bf3bd78a54abafe59ea8011008921b
 t
 Dapp/src/main/java/com/polibudaguys/lolstats/data/daos/SummonerDao.kt,e\6\e670697b4fd9602b71834342b6e04c9a9300fcaa
+j
+:app/src/main/java/com/polibudaguys/lolstats/AppDatabase.kt,5\4\547a4d146749a81e4edd41dd39a22521588ddc79

@@ -12,7 +12,7 @@ interface SummonerDao {
     fun getAll(): List<Summoner>
 
     @Insert
-    fun insertAll(vararg summoners: Summoner)
+    fun insert(vararg summoner: Summoner)
 
     @Delete
     fun delete(summoner: Summoner)

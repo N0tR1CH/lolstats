@@ -24,6 +24,7 @@ import com.polibudaguys.lolstats.screens.SearchScreen
 fun App(
     userViewModel: UserDto,
     summonerStatsViewModel: SummonerStatsDto,
+    appDatabase: AppDatabase,
 ) {
     val navController: NavHostController = rememberNavController()
 
@@ -45,12 +46,13 @@ fun App(
                     SearchScreen(
                         userViewModel = userViewModel,
                         summonerStatsViewModel = summonerStatsViewModel,
+                        appDatabase = appDatabase,
                     )
                 }
             }
 
             composable(Routes.History) {
-                HistoryScreen()
+                HistoryScreen(appDatabase = appDatabase)
             }
 
             composable(Routes.Menu) {

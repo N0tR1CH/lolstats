@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
 import com.polibudaguys.lolstats.data.dtos.SummonerStatsDto
 import com.polibudaguys.lolstats.data.dtos.UserDto
 import com.polibudaguys.lolstats.data.repositories.SummonerStatsRepository
@@ -33,11 +34,18 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val db: AppDatabase = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "lol-stats-db"
+        ).build()
+
         setContent {
             LOLStatsTheme {
                 App(
                     userViewModel = userViewModel,
                     summonerStatsViewModel = summonerStatsViewModel,
+                    appDatabase = db,
                 )
             }
         }

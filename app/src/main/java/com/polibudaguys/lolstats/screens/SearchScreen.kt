@@ -36,9 +36,11 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.polibudaguys.lolstats.AppDatabase
 import com.polibudaguys.lolstats.R
 import com.polibudaguys.lolstats.data.dtos.SummonerStatsDto
 import com.polibudaguys.lolstats.data.dtos.UserDto
+import com.polibudaguys.lolstats.data.model.Summoner
 import com.polibudaguys.lolstats.data.model.SummonerStatsItem
 import kotlinx.coroutines.flow.collectLatest
 
@@ -46,6 +48,7 @@ import kotlinx.coroutines.flow.collectLatest
 fun SearchScreen(
     userViewModel: UserDto,
     summonerStatsViewModel: SummonerStatsDto,
+    appDatabase: AppDatabase,
 ) {
     var summonerName by remember { mutableStateOf("") }
     val user by userViewModel.user.collectAsState()
@@ -136,7 +139,22 @@ fun SearchScreen(
 
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    Button(onClick = { /*TODO*/ }) {
+                    Button(onClick = {
+                        val summoner = Summoner(
+                            id = user.id,
+                            name = user.name,
+                            level = user.summonerLevel,
+                            tier = stats.tier,
+                            rank = stats.rank,
+                            points = stats.leaguePoints,
+                            wins = stats.wins,
+                            losses = stats.losses,
+                            profileIconId = user.profileIconId,
+                        )
+
+                        val summonerDao = appDatabase.summonerDao()
+                        summonerDao.insert(summoner)
+                    }) {
                         Text("Add to History")
                     }
                 }
